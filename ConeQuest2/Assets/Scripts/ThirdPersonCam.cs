@@ -40,7 +40,5 @@ public class ThirdPersonCam : MonoBehaviour
         Vector3 direction = context.ReadValue<Vector3>();
 
         inputDirection = new Vector3(direction.x, direction.y, direction.z);
-
-        Debug.Log(inputDirection);
     }
 }
