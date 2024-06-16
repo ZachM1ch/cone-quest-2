@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
       propertyPath: m_LocalScale.x
@@ -91,7 +91,70 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9092150244613495159}
+    - targetCorrespondingSourceObject: {fileID: -7354032858468194468, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3134194540418139487}
+    - targetCorrespondingSourceObject: {fileID: -1671144675658278479, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4652097368479481298}
+    - targetCorrespondingSourceObject: {fileID: -2981806666508512731, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8662595083114674032}
   m_SourcePrefab: {fileID: 100100000, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
+--- !u!1 &2160504823976259277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2981806666508512731, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
+  m_PrefabInstance: {fileID: 5432987198389566696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &8662595083114674032
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160504823976259277}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 397580877890389104, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
+--- !u!1 &2570218208658941273 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1671144675658278479, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
+  m_PrefabInstance: {fileID: 5432987198389566696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4652097368479481298
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2570218208658941273}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6834408633559233570, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
 --- !u!1 &5162445427547308473 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
@@ -119,3 +182,30 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &5950630623666428852 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7354032858468194468, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
+  m_PrefabInstance: {fileID: 5432987198389566696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &3134194540418139487
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950630623666428852}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2346254136336646822, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}

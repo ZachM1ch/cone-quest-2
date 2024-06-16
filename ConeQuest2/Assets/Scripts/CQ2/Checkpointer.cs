@@ -43,7 +43,7 @@ public class Checkpointer : MonoBehaviour
     {
         if (isActive)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 if (CPID != 0)
                 {

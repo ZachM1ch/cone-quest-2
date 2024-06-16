@@ -29,19 +29,19 @@ public class BackgroundMusicPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.U))
+        if(Input.GetKeyDown(KeyCode.U))
         {
             kitchen.GetComponent<Checkpointer>().wasTriggered = true;
         }
-        if (Input.GetKey(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             livingRoom.GetComponent<Checkpointer>().wasTriggered = true;
         }
-        if (Input.GetKey(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             garage.GetComponent<Checkpointer>().wasTriggered = true;
         }
-        if (Input.GetKey(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             outside.GetComponent<Checkpointer>().wasTriggered = true;
         }

@@ -15,6 +15,9 @@ TagManager:
   - Paper
   - Plastic
   - Metal
+  - MeterTick
+  - MeterBar
+  - MeterMask
   layers:
   - Default
   - TransparentFX

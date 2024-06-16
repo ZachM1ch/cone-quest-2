@@ -31,7 +31,7 @@ public class SFXPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             PlayRandomSound(jumpClips);
         }
@@ -114,7 +114,7 @@ public class SFXPlayer : MonoBehaviour
         int rand = Random.Range(0, ac.Length);
         soundClip = ac[rand];
         myBoombox.clip = soundClip;
-        myBoombox.Play();
+        myBoombox.PlayOneShot(myBoombox.clip);
     }
 
     /// <summary>
@@ -125,6 +125,6 @@ public class SFXPlayer : MonoBehaviour
     {
         soundClip = soundClips[num];
         myBoombox.clip = soundClip;
-        myBoombox.Play();
+        myBoombox.PlayOneShot(myBoombox.clip);
     }
 }
