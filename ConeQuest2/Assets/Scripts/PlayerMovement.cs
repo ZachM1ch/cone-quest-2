@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMult;
+    public float gravity;
+    public float accelFactor;
+
     bool readyToJump;
 
 
@@ -27,8 +30,13 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
 
+    private SkinnedMeshRenderer mesh;
+
+    private float accel;
+
     private void Start()
     {
+        mesh = GetComponentInChildren<SkinnedMeshRenderer>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         ResetJump();
@@ -65,10 +73,18 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
-        if(grounded)
+        if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         else
+        {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMult, ForceMode.Force);
+            rb.AddForce(new Vector3(0, -1.0f, 0) * rb.mass * gravity);
+        }
+
+        if (moveDirection.normalized != Vector3.zero)
+            accel = accel < 1.0f ? accel + accelFactor : accel;
+        else
+            accel = 0.0f;
     }
 
     private void SpeedControl()
@@ -100,7 +116,5 @@ public class PlayerMovement : MonoBehaviour
         Vector3 direction = context.ReadValue<Vector3>();
 
         inputDirection = new Vector3(direction.x, direction.y, direction.z);
-
-        Debug.Log(inputDirection);
     }
 }

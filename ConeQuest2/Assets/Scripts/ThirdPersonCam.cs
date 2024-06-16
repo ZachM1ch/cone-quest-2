@@ -8,6 +8,7 @@ public class ThirdPersonCam : MonoBehaviour
     [Header("References")]
     public Transform orientation;
     public Transform player;
+    public Transform playerObj;
     public Rigidbody rb;
 
     public float rotationSpeed;
@@ -18,6 +19,8 @@ public class ThirdPersonCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        
     }
 
     private void FixedUpdate()
@@ -29,7 +32,7 @@ public class ThirdPersonCam : MonoBehaviour
 
         if (inputDirection != Vector3.zero)
         {
-            player.forward = Vector3.Slerp(player.forward, lookDirection.normalized, Time.deltaTime * rotationSpeed);
+            playerObj.forward = Vector3.Slerp(playerObj.forward, lookDirection.normalized, Time.deltaTime * rotationSpeed);
         }
 
     }
