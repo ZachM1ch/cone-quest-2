@@ -3,7 +3,42 @@ guid: 1c584f1a80ef51e49a6c6923e1c0e7ea
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pillows
+    second: {fileID: 2100000, guid: 6cf93e850277889409e7423e82fbe9a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RoundPillow
+    second: {fileID: 2100000, guid: be1ab5afe89bf9343ba27d9e88760477, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: defaultPolygonShader
+    second: {fileID: 2100000, guid: a276940457fd70a4ba116aca0528724e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: felt1
+    second: {fileID: 2100000, guid: 10c5e0a654b98f346a6782daa54360c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: heartPillow1
+    second: {fileID: 2100000, guid: 64eb5122f3f30f3488c3127c54d81c26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: a276940457fd70a4ba116aca0528724e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: legs1
+    second: {fileID: 2100000, guid: bbb0722f32bc5844abd218aff93396d2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
