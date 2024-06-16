@@ -95,6 +95,11 @@ public class Checkpointer : MonoBehaviour
             {
                 wasTriggered = true;
                 isActive = true;
+                GameObject text = this.gameObject.transform.GetChild(0).gameObject;
+                if (other != null)
+                {
+                    transform.LookAt(other.transform);
+                }
                 breakCheckpoint(other);
             }
         }

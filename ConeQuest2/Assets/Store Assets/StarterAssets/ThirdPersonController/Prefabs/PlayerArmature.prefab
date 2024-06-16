@@ -1158,6 +1158,8 @@ MonoBehaviour:
   CameraAngleOverride: 0
   LockCameraPosition: 0
   terrainCheck: {fileID: 7369606572326994486}
+  _animator: {fileID: 0}
+  bounceHeight: 58
   sensitivity: 1
   vCam: {fileID: 0}
 --- !u!114 &5885216827943657505
@@ -1309,7 +1311,7 @@ MonoBehaviour:
   groundTransform: {fileID: 3893294197879345259}
   layerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 4294967295
   terrainRayLength: 1
   terrainRayPosOffset: {x: 0, y: 0.05, z: 0}
   currTerrainType: 0
