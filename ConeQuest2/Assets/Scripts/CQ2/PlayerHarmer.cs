@@ -39,7 +39,7 @@ public class PlayerHarmer : MonoBehaviour
     /// <param name="terry"> The player </param>
     void StaticMeltPlayer(GameObject terry)
     {
-        Meltometer melta = terry.GetComponent<Meltometer>();
+        Meltometer melta = terry.transform.parent.GetComponent<Meltometer>();
         melta.ChangeMeter(staticHarmAmount);
     }
 
@@ -49,7 +49,7 @@ public class PlayerHarmer : MonoBehaviour
     /// <param name="terry"> The player </param>
     void GradualMeltPlayer(GameObject terry)
     {
-        Meltometer melta = terry.GetComponent<Meltometer>();
+        Meltometer melta = terry.transform.parent.GetComponent<Meltometer>();
         StartCoroutine(MeltOverTime(melta));
     }
 
