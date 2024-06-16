@@ -19,7 +19,8 @@ public class SFXPlayer : MonoBehaviour
     public AudioClip[] hurtClips;
     public AudioClip[] paperClips;
     public AudioClip[] plasticClips;
-   
+    public AudioClip[] metalClips;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,38 +39,38 @@ public class SFXPlayer : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (true /*gameobject rigidbody velocity > value*/)
+        if (other.transform.CompareTag("Organic"))
         {
-            PlayRandomSound(impactClips);
+            PlayRandomSound(organicClips);
         }
-        else
+        if (other.transform.CompareTag("Bounce"))
         {
-            if (other.transform.CompareTag("Organic"))
-            {
-                PlayRandomSound(organicClips);
-            }
-            if (other.transform.CompareTag("Bounce"))
-            {
-                PlayRandomSound(bounceClips);
-            }
-            if (other.transform.CompareTag("glass"))
-            {
-                PlayRandomSound(glassClips);
-            }
-            if (other.transform.CompareTag("Organic"))
-            {
-                PlayRandomSound(organicClips);
-            }
-            if (other.transform.CompareTag("Paper"))
-            {
-                PlayRandomSound(paperClips);
-            }
-            if (other.transform.CompareTag("Other"))
-            {
-                PlayRandomSound(genericClips);
-            }
+            PlayRandomSound(bounceClips);
         }
-        
+        if (other.transform.CompareTag("Glass"))
+        {
+            PlayRandomSound(glassClips);
+        }
+        if (other.transform.CompareTag("Organic"))
+        {
+            PlayRandomSound(organicClips);
+        }
+        if (other.transform.CompareTag("Paper"))
+        {
+            PlayRandomSound(paperClips);
+        }
+        if (other.transform.CompareTag("Plastic"))
+        {
+            PlayRandomSound(plasticClips);
+        }
+        if (other.transform.CompareTag("Metal"))
+        {
+            PlayRandomSound(metalClips);
+        }
+        if (other.transform.CompareTag("Other"))
+        {
+            PlayRandomSound(genericClips);
+        }
     }
 
     /// <summary>
@@ -101,7 +102,7 @@ public class SFXPlayer : MonoBehaviour
     /// </summary>
     public void PlayCollect()
     {
-        PlaySound(sfx, 2);
+        PlayRandomSound(impactClips);
     }
 
     /// <summary>

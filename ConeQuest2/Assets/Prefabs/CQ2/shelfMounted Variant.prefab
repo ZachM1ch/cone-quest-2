@@ -68,13 +68,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1cf5529ba4ec03b4d98fdc607723a117, type: 2}
+    - target: {fileID: -6663268677242510821, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
+      propertyPath: m_TagString
+      value: Metal
+      objectReference: {fileID: 0}
     - target: {fileID: -2276775582325690793, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1cf5529ba4ec03b4d98fdc607723a117, type: 2}
+    - target: {fileID: -1163416789225216097, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
+      propertyPath: m_TagString
+      value: Paper
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
       propertyPath: m_Name
       value: shelfMounted Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816240445912907683, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
+      propertyPath: m_TagString
+      value: Metal
       objectReference: {fileID: 0}
     - target: {fileID: 7071420061933212029, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -84,6 +96,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3919818978772141481}
     - targetCorrespondingSourceObject: {fileID: 3816240445912907683, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2710866799056434423}
@@ -175,3 +190,30 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2494757338955447199, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
+--- !u!1 &8021722095611768780 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
+  m_PrefabInstance: {fileID: 7175228643262223005}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &3919818978772141481
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8021722095611768780}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
