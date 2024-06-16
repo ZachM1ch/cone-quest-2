@@ -39,19 +39,25 @@ public class PlayerMovement : MonoBehaviour
         mesh = GetComponentInChildren<SkinnedMeshRenderer>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        // make sure jump is possible
         ResetJump();
     }
 
     private void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        // rotate the mesh's root to the game object's rotation
+        mesh.rootBone.transform.localEulerAngles = new Vector3(mesh.rootBone.localEulerAngles.x, mesh.gameObject.transform.localEulerAngles.y, mesh.rootBone.localEulerAngles.z);
 
+        //shoot a raycast down to check if you are grounded
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         SpeedControl();
 
+        // only add ground drag if grounded
         if (grounded)
             rb.drag = groundDrag;
         else
-            rb.drag = 0;
+            rb.drag = 0.0f;
     }
 
     private void FixedUpdate()
@@ -61,9 +67,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        // calculate movement direction
+        // calculate movement direction based on camera orientation
         moveDirection = orientation.forward * inputDirection.z + orientation.right * inputDirection.x;
 
+        // if there is an "up" input, no jump cooldown, and on the ground, then jump
         if(inputDirection.y > 0f && readyToJump && grounded)
         {
             readyToJump = false;
@@ -73,24 +80,34 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
+        // if grounded, move in the input direction
         if (grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * accel, ForceMode.Force);
         else
         {
+            // if jumping, apply air movement multiplier
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMult, ForceMode.Force);
+            // artificial gravity to make it feel less floaty
             rb.AddForce(new Vector3(0, -1.0f, 0) * rb.mass * gravity);
         }
 
+        // if moving, apply an acceleration
         if (moveDirection.normalized != Vector3.zero)
             accel = accel < 1.0f ? accel + accelFactor : accel;
         else
+        {
             accel = 0.0f;
+            if(grounded)
+                rb.velocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
+        }
     }
 
     private void SpeedControl()
     {
+        // get the flat velocity of the rigid body
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
+        // limit it to the move speed
         if(flatVel.magnitude > moveSpeed)
         {
             Vector3 limitVel = flatVel.normalized * moveSpeed;
@@ -100,8 +117,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        // make sure that every jump is exactly the same
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
+        // add jump force
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
@@ -110,11 +129,9 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
     }
 
-
     public void OnMove(InputAction.CallbackContext context)
     {
-        Vector3 direction = context.ReadValue<Vector3>();
-
-        inputDirection = new Vector3(direction.x, direction.y, direction.z);
+        // get directional input vector
+        inputDirection = context.ReadValue<Vector3>();
     }
 }
