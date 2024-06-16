@@ -30,7 +30,6 @@ public class ThirdPersonCam : MonoBehaviour
         if (inputDirection != Vector3.zero)
         {
             player.forward = Vector3.Slerp(player.forward, lookDirection.normalized, Time.deltaTime * rotationSpeed);
-            Debug.Log(player.forward);
         }
 
     }
@@ -39,6 +38,6 @@ public class ThirdPersonCam : MonoBehaviour
     {
         Vector3 direction = context.ReadValue<Vector3>();
 
-        inputDirection = new Vector3(direction.x, direction.y, direction.z);
+        inputDirection = new Vector3(direction.x, 0, direction.z);
     }
 }

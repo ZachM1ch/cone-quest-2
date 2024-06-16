@@ -9,6 +9,11 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
 
     public float groundDrag;
+    public float jumpForce;
+    public float jumpCooldown;
+    public float airMult;
+    bool readyToJump;
+
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -26,18 +31,19 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        ResetJump();
     }
 
     private void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
+        SpeedControl();
+
         if (grounded)
             rb.drag = groundDrag;
         else
             rb.drag = 0;
-
-        Debug.Log(grounded);
     }
 
     private void FixedUpdate()
@@ -50,7 +56,19 @@ public class PlayerMovement : MonoBehaviour
         // calculate movement direction
         moveDirection = orientation.forward * inputDirection.z + orientation.right * inputDirection.x;
 
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        if(inputDirection.y > 0f && readyToJump && grounded)
+        {
+            readyToJump = false;
+
+            Jump();
+
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
+
+        if(grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        else
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMult, ForceMode.Force);
     }
 
     private void SpeedControl()
@@ -64,11 +82,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void Jump()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+
+    private void ResetJump()
+    {
+        readyToJump = true;
+    }
+
 
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector3 direction = context.ReadValue<Vector3>();
 
         inputDirection = new Vector3(direction.x, direction.y, direction.z);
+
+        Debug.Log(inputDirection);
     }
 }
