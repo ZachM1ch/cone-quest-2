@@ -51,14 +51,13 @@ public class PlayerMovement : MonoBehaviour
 
         //shoot a raycast down to check if you are grounded
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-
         SpeedControl();
 
         // only add ground drag if grounded
         if (grounded)
             rb.drag = groundDrag;
         else
-            rb.drag = 0;
+            rb.drag = 0.0f;
     }
 
     private void FixedUpdate()
@@ -96,7 +95,11 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection.normalized != Vector3.zero)
             accel = accel < 1.0f ? accel + accelFactor : accel;
         else
+        {
             accel = 0.0f;
+            if(grounded)
+                rb.velocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
+        }
     }
 
     private void SpeedControl()
