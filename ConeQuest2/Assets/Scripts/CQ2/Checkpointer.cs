@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,7 +9,7 @@ public class Checkpointer : MonoBehaviour
 {
     public float healValue = 5;
 
-    private int CPID;
+    public int CPID;
     
     // kitchen checkpoint should start with all active
     public bool wasTriggered = false;
@@ -17,6 +18,9 @@ public class Checkpointer : MonoBehaviour
 
     GameObject other;
 
+    public GameObject tempTerry;
+
+    public GameObject particleExplosion;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +31,7 @@ public class Checkpointer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.LookAt(tempTerry.transform);
         
     }
 
@@ -40,9 +45,14 @@ public class Checkpointer : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.E))
             {
-                terry.GetComponent<Meltometer>().ChangeMeter(healValue);
-                isActive = false;
-                GameManager.GM.RemoveCheckpointFromList(CPID);
+                if (CPID != 0)
+                {
+                    terry.transform.parent.GetComponent<Meltometer>().ChangeMeter(healValue);
+                    isActive = false;
+                    GameManager.GM.RemoveCheckpointFromList(CPID);
+                    particleExplosion.SetActive(true);
+                    Destroy(this.gameObject.transform.parent.gameObject);
+                }
             }
         }
     }
@@ -96,11 +106,46 @@ public class Checkpointer : MonoBehaviour
                 wasTriggered = true;
                 isActive = true;
                 GameObject text = this.gameObject.transform.GetChild(0).gameObject;
+                text.GetComponent<MeshRenderer>().enabled = true;
+                other.transform.parent.GetComponent<Meltometer>().SetLastCheckpoint(this.gameObject);
                 if (other != null)
                 {
                     transform.LookAt(other.transform);
                 }
                 breakCheckpoint(other);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Trigger Logic
+    /// </summary>
+    /// <param name="col"></param>
+    public void OnTriggerStay(Collider col)
+    {
+        other = col.gameObject;
+
+        if (other.CompareTag("Player"))
+        {
+            breakCheckpoint(other);
+        }
+    }
+
+    /// <summary>
+    /// Trigger Logic
+    /// </summary>
+    /// <param name="col"></param>
+    public void OnTriggerExit(Collider col)
+    {
+        other = col.gameObject;
+
+        if (other.CompareTag("Player"))
+        {
+            if (!isBroken)
+            {
+                GameObject text = this.gameObject.transform.GetChild(0).gameObject;
+                text.GetComponent<MeshRenderer>().enabled = false;
+
             }
         }
     }

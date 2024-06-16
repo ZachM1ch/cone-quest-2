@@ -10,6 +10,7 @@ public class IceCollector : MonoBehaviour
 
     GameObject other;
 
+
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
@@ -32,7 +33,7 @@ public class IceCollector : MonoBehaviour
     /// <param name="terry"> The player </param>
     void UnmeltPlayer(GameObject terry)
     {
-        Meltometer melta = terry.GetComponent<Meltometer>();
+        Meltometer melta = terry.transform.parent.GetComponent<Meltometer>();
         melta.ChangeMeter(healAmount);
     }
 
@@ -46,8 +47,12 @@ public class IceCollector : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            UnmeltPlayer(other);
-            Destroy(this.gameObject);
+
+            if (other.transform.parent.GetComponent<Meltometer>().currentMeter < Meltometer.MAX_METER)
+            {                
+                UnmeltPlayer(other);
+                Destroy(this.gameObject);
+            }
         }
     }
 

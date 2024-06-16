@@ -31,10 +31,13 @@ public class GameManager : MonoBehaviour
 
         checkpoints.Sort((x, y) => x.GetComponent<Checkpointer>().GetCPID().CompareTo(y.GetComponent<Checkpointer>().GetCPID()));
 
+
+        /*
         foreach (GameObject g in GameObject.FindGameObjectsWithTag("Player"))
         {
             terry = g;
         }
+        */
 
         /*
 
@@ -72,20 +75,22 @@ public class GameManager : MonoBehaviour
     /// <param name="index"></param>
     public void RemoveCheckpointFromList(int index)
     {
-        checkpoints.RemoveAt(index);
-        
-        if (checkpoints.Count > 0)
+        if (index != 0)
         {
-            for (int i = 0; i < checkpoints.Count; i++)
+            checkpoints.RemoveAt(index);
+
+            if (checkpoints.Count > 0)
             {
-                checkpoints[i].GetComponent<Checkpointer>().SetCPID(index);
-                checkpoints[i].GetComponent<Checkpointer>().ClearActive();
+                for (int i = 0; i < checkpoints.Count; i++)
+                {
+                    checkpoints[i].GetComponent<Checkpointer>().SetCPID(i);
+                    checkpoints[i].GetComponent<Checkpointer>().ClearActive();
+                }
+
+                checkpoints[index - 1].GetComponent<Checkpointer>().MakeActive();
+
+                terry.GetComponent<Meltometer>().SetLastCheckpoint(checkpoints[index - 1]);
             }
-
-            checkpoints[index - 1].GetComponent<Checkpointer>().MakeActive();
-
-            terry.GetComponent<Meltometer>().SetLastCheckpoint(checkpoints[index - 1]);
-
         }
     }
 

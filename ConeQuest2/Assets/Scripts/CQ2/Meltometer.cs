@@ -33,6 +33,17 @@ public class Meltometer : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (Input.GetKey(KeyCode.Q))
+        {
+            ChangeMeter(-6);
+        }
+
+        if (Input.GetKey(KeyCode.F))
+        {
+            if (currentMeter > 2)
+                ChangeMeter(-3);
+        }
+
         if (CheckIfDead())
         {
             Vector3 lastCheckpointPos = lastCheckpoint.transform.position;
