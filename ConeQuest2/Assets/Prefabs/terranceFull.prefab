@@ -682,7 +682,7 @@ MonoBehaviour:
   airMult: 0.4
   gravity: 9.8
   accelFactor: 0.1
-  playerHeight: 0.5
+  playerHeight: 0.4
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
@@ -901,8 +901,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8340305417123212741}
-  m_LocalRotation: {x: 0, y: 0, z: 0.70090926, w: 0.71325046}
-  m_LocalPosition: {x: 0, y: 0.007, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.0069999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -912,7 +912,7 @@ Transform:
   - {fileID: 4754618004512382677}
   m_Father: {fileID: 5975344229353305374}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &8589099258817930332
 GameObject:
   m_ObjectHideFlags: 0
