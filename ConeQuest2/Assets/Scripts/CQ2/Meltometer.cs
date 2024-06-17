@@ -23,6 +23,8 @@ public class Meltometer : MonoBehaviour
 
     public GameObject meterMask;
 
+    public float currentGradual;
+
     private void Awake()
     {
     }
@@ -60,10 +62,13 @@ public class Meltometer : MonoBehaviour
             ChangeMeter(1);
         }
 
-        if (CheckIfDead())
+        if (Input.GetKeyDown(KeyCode.N))
         {
-            //ChangeMeter(MAX_METER);
-            
+            ChangeMeter(1);
+        }
+
+        if (CheckIfDead())
+        {   
             
             Vector3 lastCheckpointPos = lastCheckpoint.transform.position;
             lastCheckpointPos.y += 1;
@@ -73,6 +78,7 @@ public class Meltometer : MonoBehaviour
             currentMeter += 1;
             
         }
+
     }
 
     /// <summary>
@@ -83,6 +89,7 @@ public class Meltometer : MonoBehaviour
     {
         currentMeter += increment;
 
+        print("begin melt");
         meterMask.GetComponent<UIMeltometer>().MoveMeltBar(increment);
 
         if (currentMeter > MAX_METER)

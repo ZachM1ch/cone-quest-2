@@ -123,11 +123,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healValue: 5
+  CPID: 0
   wasTriggered: 0
   isActive: 0
   isBroken: 0
   tempTerry: {fileID: 0}
-  particleExplosion: {fileID: 6611702835617499092}
+  particleExplosion: {fileID: 1594779324561172006}
 --- !u!1 &5979266606663820054
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +310,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 197355005063948582}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,9 +330,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4701827583935936511}
-  - {fileID: 3065118051597906312}
+  - {fileID: 7451710579679875194}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9069152770711498995
 GameObject:
@@ -574,6 +575,10 @@ PrefabInstance:
       value: Ice Cream
       objectReference: {fileID: 0}
     - target: {fileID: 5544388521987800081, guid: ab57afbfc73d4f84186b88d2563535ad, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5544388521987800081, guid: ab57afbfc73d4f84186b88d2563535ad, type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
@@ -770,13 +775,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1609d0d41ded0147981b9e69d18b385, type: 3}
---- !u!4 &3065118051597906312 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4290697205112905281, guid: e1609d0d41ded0147981b9e69d18b385, type: 3}
-  m_PrefabInstance: {fileID: 6693005546709241403}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6611702835617499092 stripped
+--- !u!1 &1594779324561172006 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5387323636921788445, guid: e1609d0d41ded0147981b9e69d18b385, type: 3}
+  m_PrefabInstance: {fileID: 6693005546709241403}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7451710579679875194 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4290697205112905281, guid: e1609d0d41ded0147981b9e69d18b385, type: 3}
   m_PrefabInstance: {fileID: 6693005546709241403}
   m_PrefabAsset: {fileID: 0}

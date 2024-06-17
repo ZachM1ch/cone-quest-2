@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 28ce435d374fa9c4ea7ded333f8bed05, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28ce435d374fa9c4ea7ded333f8bed05, type: 3}
       propertyPath: m_LocalScale.x
@@ -67,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 28ce435d374fa9c4ea7ded333f8bed05, type: 3}
       propertyPath: m_Name
       value: sideTable Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 28ce435d374fa9c4ea7ded333f8bed05, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 28ce435d374fa9c4ea7ded333f8bed05, type: 3}
       propertyPath: m_TagString

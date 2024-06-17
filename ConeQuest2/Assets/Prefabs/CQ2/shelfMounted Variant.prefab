@@ -69,6 +69,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 1cf5529ba4ec03b4d98fdc607723a117, type: 2}
     - target: {fileID: -6663268677242510821, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -6663268677242510821, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
       propertyPath: m_TagString
       value: Metal
       objectReference: {fileID: 0}
@@ -77,12 +81,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 1cf5529ba4ec03b4d98fdc607723a117, type: 2}
     - target: {fileID: -1163416789225216097, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -1163416789225216097, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
       propertyPath: m_TagString
       value: Paper
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
       propertyPath: m_Name
       value: shelfMounted Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816240445912907683, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3816240445912907683, guid: e37e8e9a59c68554e8382ea6d1db5b47, type: 3}
       propertyPath: m_TagString

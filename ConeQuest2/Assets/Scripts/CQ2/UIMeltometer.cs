@@ -11,12 +11,16 @@ public class UIMeltometer : MonoBehaviour
 {
     public List<Image> tickMarks;
 
-    Image currentTick;
-    int currentTickIndex;
+    public Image currentTick;
+    public int currentTickIndex;
 
     RawImage meterBar;
 
     float meterBarRightSideOffset;
+
+    bool isTakingGradualDamage = false;
+
+    float initX;
 
     private void Awake()
     {
@@ -53,7 +57,11 @@ public class UIMeltometer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // Screw it I'm hardcoding it
+        //if (isTakingGradualDamage)
+        //{
+            //GradualMoveMeter(0.05f);
+        //}
     }
 
     public void MoveMeltBar(float inc)
@@ -63,80 +71,106 @@ public class UIMeltometer : MonoBehaviour
         print("enter");
         print(inc);
 
-        if (inc < 0)
+        if (inc > -1 && inc < 0)
+        {
+            print(currentTick);
+            print(tickMarks[tickMarks.Count - 1]);
+            if (currentTick != tickMarks[tickMarks.Count - 1])
+            {
+                print("pass1");
+                if (true)
+                {
+                    print("Player gradual");
+
+                    GradualMoveMeter(inc);
+                }
+            }
+        }
+        else if (inc < 0)
         {
             if (currentTick != tickMarks[tickMarks.Count - 1])
             {
                 if ((tickMarks.Count - 1 - currentTickIndex) - Math.Abs(inc) < 0)
                 {
-                    print("Player died");
-                    // kill player outright
-                    print(currentTick.rectTransform.anchoredPosition.x);
+                    // kill player
                     currentTickIndex = tickMarks.Count - 1;
-                    print("CTI       " + currentTickIndex);
-                    currentTick = tickMarks[currentTickIndex];
-                    print(currentTick.rectTransform.anchoredPosition.x);
-                    print(meterBarRightSideOffset);
-                    print(currentTick.rectTransform.anchoredPosition.x - meterBarRightSideOffset);
-                    newX = currentTick.rectTransform.anchoredPosition.x - meterBarRightSideOffset;
-                    meterBar.rectTransform.anchoredPosition = new Vector3(newX, meterBar.rectTransform.anchoredPosition.y, meterBar.rectTransform.localPosition.z);
                 }
                 else
                 {
-                    print("player hurt");
-                    print(currentTick.rectTransform.anchoredPosition.x);
                     currentTickIndex = currentTickIndex - (int)inc;
-                    print("CTI       " + currentTickIndex);
-                    currentTick = tickMarks[currentTickIndex];
-                    print(currentTick.rectTransform.anchoredPosition.x);
-                    print(meterBarRightSideOffset);
-                    print(currentTick.rectTransform.anchoredPosition.x - meterBarRightSideOffset);
-                    newX = currentTick.rectTransform.anchoredPosition.x - meterBarRightSideOffset;
-                    meterBar.rectTransform.anchoredPosition = new Vector3(newX, meterBar.rectTransform.anchoredPosition.y, meterBar.rectTransform.localPosition.z);
+                    
                 }
-                
+                currentTick = tickMarks[currentTickIndex];
+                newX = currentTick.rectTransform.anchoredPosition.x - meterBarRightSideOffset;
+                meterBar.rectTransform.anchoredPosition = new Vector3(newX, meterBar.rectTransform.anchoredPosition.y, meterBar.rectTransform.localPosition.z);
             }
-            
         }
         else if (inc > 0)
         {
-            print("positive");
             if (currentTick != tickMarks[0])
             {
-                print("not tick 0");
                 if (currentTickIndex - Math.Abs(inc) < 0)
                 {
-                    print("max hp");
-                    // player is at max health
-
-                    print(currentTick.rectTransform.anchoredPosition.x);
+                    // full health player
                     currentTickIndex = 0;
-                    currentTick = tickMarks[currentTickIndex];
-                    print("CTI       " + currentTickIndex);
-                    print(currentTick.rectTransform.anchoredPosition.x);
-                    print(meterBarRightSideOffset);
-                    print(currentTick.rectTransform.anchoredPosition.x - meterBarRightSideOffset);
-                    newX = currentTick.rectTransform.anchoredPosition.x - meterBarRightSideOffset;
-                    meterBar.rectTransform.anchoredPosition = new Vector3(newX, meterBar.rectTransform.anchoredPosition.y, meterBar.rectTransform.localPosition.z);
                 }
                 else
                 {
-                    print("palyer goes up by inc");
-
-                    print(currentTick.rectTransform.anchoredPosition.x);
                     currentTickIndex = currentTickIndex - (int)inc;
-                    currentTick = tickMarks[currentTickIndex];
-                    print("CTI       " + currentTickIndex);
-                    print(currentTick.rectTransform.anchoredPosition.x);
-                    print(meterBarRightSideOffset);
-                    print(currentTick.rectTransform.anchoredPosition.x - meterBarRightSideOffset);
-                    newX = currentTick.rectTransform.anchoredPosition.x - meterBarRightSideOffset;
-                    meterBar.rectTransform.anchoredPosition = new Vector3(newX, meterBar.rectTransform.anchoredPosition.y, meterBar.rectTransform.localPosition.z);
                 }
-
+                currentTick = tickMarks[currentTickIndex];
+                newX = currentTick.rectTransform.anchoredPosition.x - meterBarRightSideOffset;
+                meterBar.rectTransform.anchoredPosition = new Vector3(newX, meterBar.rectTransform.anchoredPosition.y, meterBar.rectTransform.localPosition.z);
             }
         }
         
+    }
+
+    public void GradualMoveMeter(float rate)
+    {
+        float diffX = (float) Math.Abs(initX - currentTick.rectTransform.anchoredPosition.x);
+
+        print("in");
+        print(meterBar.rectTransform.anchoredPosition.x + " > " + initX + " - " + diffX);
+        if (meterBar.rectTransform.anchoredPosition.x > initX - diffX && isTakingGradualDamage)
+        {
+            print("pass1");
+            float temp = meterBar.rectTransform.anchoredPosition.x;
+            print("(" + temp + " - " + rate +" * "+ Time.deltaTime + ") < " + initX + " - " + diffX);
+            print((temp - rate * 5 * Time.deltaTime) + " < " + (initX - diffX));
+            if ((temp - rate * 5 * Time.deltaTime) < initX - diffX)
+            {
+                print("pass2");
+                // cling to next closest tickmark
+                meterBar.rectTransform.anchoredPosition = new Vector3(currentTick.rectTransform.anchoredPosition.x - meterBarRightSideOffset, meterBar.rectTransform.anchoredPosition.y, meterBar.rectTransform.localPosition.z);
+                isTakingGradualDamage = false;
+            }
+            else
+            {
+                print("fail2");
+                float newerX = meterBar.rectTransform.anchoredPosition.x + 1000 * rate * Time.deltaTime;
+                print(newerX);
+                meterBar.rectTransform.anchoredPosition = new Vector3(newerX , meterBar.rectTransform.anchoredPosition.y, meterBar.rectTransform.localPosition.z);
+            }
+        }
+        else
+        {
+            print("fail1");
+            isTakingGradualDamage = false;
+        }
+    }
+
+    public void setupForGradual()
+    {
+        isTakingGradualDamage = true;
+        initX = meterBar.rectTransform.anchoredPosition.x;
+
+        if (true)
+        {
+            currentTickIndex = currentTickIndex + 1;
+        }
+        print("cty " + currentTickIndex);
+        currentTick = tickMarks[currentTickIndex];
     }
 
 }

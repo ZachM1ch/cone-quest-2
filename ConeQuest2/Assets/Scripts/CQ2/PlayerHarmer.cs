@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.InputSystem.Controls.AxisControl;
 
 public class PlayerHarmer : MonoBehaviour
 {
@@ -17,6 +19,14 @@ public class PlayerHarmer : MonoBehaviour
 
     GameObject other;
 
+    bool gradualHarmActive = false;
+
+    float startOfMeter;
+
+    public GameObject tempTerry;
+
+    public GameObject meterMask;
+
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
@@ -30,7 +40,8 @@ public class PlayerHarmer : MonoBehaviour
     /// </summary>
     void Update()
     {
-
+        Meltometer melta = tempTerry.transform.parent.GetComponent<Meltometer>();
+        MeltOverTime2(melta);
     }
 
     /// <summary>
@@ -50,23 +61,30 @@ public class PlayerHarmer : MonoBehaviour
     void GradualMeltPlayer(GameObject terry)
     {
         Meltometer melta = terry.transform.parent.GetComponent<Meltometer>();
-        StartCoroutine(MeltOverTime(melta));
+        MeltOverTime2(melta);
     }
 
-    /// <summary>
-    /// Enumerator to decrease Meltometer over a period of time
-    /// </summary>
-    /// <param name="melt"> Player Meltometer </param>
-    /// <returns></returns>
-    private IEnumerator MeltOverTime(Meltometer melt)
+    void MeltOverTime2(Meltometer melt)
     {
-        float currentTime = 0;
-        while ((currentTime / gradualHarmInterval) < gradualHarmLimit)
+
+        if (melt.currentMeter > startOfMeter - gradualHarmLimit && gradualHarmActive)
         {
-            melt.ChangeMeter((currentTime / gradualHarmInterval) * -1);
-            currentTime += Time.deltaTime;
+            float temp = melt.currentMeter;
+            if ((temp - gradualHarmAmount * Time.deltaTime) < startOfMeter - gradualHarmLimit)
+            {
+                melt.currentMeter = (float)Math.Floor(melt.currentMeter);
+                gradualHarmActive = false;
+            }
+            else
+            {
+                melt.ChangeMeter(gradualHarmAmount * Time.deltaTime * -1);
+            }
         }
-        yield return null;
+        else
+        {
+            gradualHarmActive = false;
+        }
+        //print("ghi: " + gradualHarmInterval + "\nghl: " + gradualHarmLimit + "\nmeter: " + melt.currentMeter);
     }
 
     /// <summary>
@@ -83,9 +101,15 @@ public class PlayerHarmer : MonoBehaviour
         }
         else if (other.CompareTag("Player") && this.gameObject.CompareTag("Heat"))
         {
+            startOfMeter = other.transform.parent.gameObject.GetComponent<Meltometer>().currentMeter;
+            gradualHarmActive = true;
+            other.transform.parent.gameObject.GetComponent<Meltometer>().currentGradual = gradualHarmAmount;
+
+            meterMask.GetComponent<UIMeltometer>().setupForGradual();
+
             GradualMeltPlayer(other);
         }
 
-        other.GetComponent<SFXPlayer>().PlayOuch();
+        other.transform.parent.gameObject.GetComponent<SFXPlayer>().PlayOuch();
     }
 }

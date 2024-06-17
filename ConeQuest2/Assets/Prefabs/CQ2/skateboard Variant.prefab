@@ -64,25 +64,85 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5191356832555801306, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -5023660813720118149, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -5023660813720118149, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
       propertyPath: m_TagString
       value: Plastic
       objectReference: {fileID: 0}
     - target: {fileID: -4790273173563211009, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -4790273173563211009, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
       propertyPath: m_TagString
       value: Plastic
+      objectReference: {fileID: 0}
+    - target: {fileID: -4479559193862442181, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -3628047146290785030, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -3628047146290785030, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
       propertyPath: m_TagString
       value: Plastic
+      objectReference: {fileID: 0}
+    - target: {fileID: -2355216606874100429, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2222918248235883362, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -304274438856677325, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
       propertyPath: m_Name
       value: skateboard Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
       propertyPath: m_TagString
       value: Plastic
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545169108868870004, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5503884597328282026, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564198198340374158, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823796713752743741, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994691741407210106, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8746395697692737223, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8746395697692737223, guid: cfcd04c25f5a13a488a8623232662d27, type: 3}
       propertyPath: m_TagString

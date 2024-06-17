@@ -73,6 +73,10 @@ PrefabInstance:
       value: shelf Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e4319f38114f0e644ac6650ad9a05f78, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e4319f38114f0e644ac6650ad9a05f78, type: 3}
       propertyPath: m_TagString
       value: Paper
       objectReference: {fileID: 0}

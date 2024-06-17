@@ -65,12 +65,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7354032858468194468, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -7354032858468194468, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
       propertyPath: m_TagString
       value: Metal
       objectReference: {fileID: 0}
     - target: {fileID: -2981806666508512731, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2981806666508512731, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
       propertyPath: m_TagString
       value: Metal
+      objectReference: {fileID: 0}
+    - target: {fileID: -1671144675658278479, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -1671144675658278479, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
       propertyPath: m_TagString
@@ -79,6 +91,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
       propertyPath: m_Name
       value: vent Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2c035aa1d2df8a946a2202e5355961c4, type: 3}
       propertyPath: m_TagString
