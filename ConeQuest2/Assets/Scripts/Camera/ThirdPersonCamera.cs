@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestThirdPersonCamera : MonoBehaviour
+public class ThirdPersonCamera : MonoBehaviour
 {
     [Header("Reference Fields")]
     public LayerMask camRaycastMask;
@@ -13,6 +13,10 @@ public class TestThirdPersonCamera : MonoBehaviour
     //public float controllerLookSmoothTime = 0.0f;
     public float lookSmoothTime = 0.0f;
     public float cameraDistance = 0.0f;
+    public float cameraMaxDistance = 0.0f;
+    public float cameraMinDistance = 0.0f;
+
+    public float cameraScollSpeed = 0.0f;
 
     [Space]
     public bool USE_CAMERA_SMOOTHING = true;
@@ -24,6 +28,7 @@ public class TestThirdPersonCamera : MonoBehaviour
     public float lookSensitivity = 1.0f;
 
     // Used on the Player Camera to smooth rotating
+    private float currentCameraDistance = 0.0f;
     private float currentCameraYRotation = 0.0f;
     private float currentCameraXRotation = 0.0f;
     private float xRotationVelocity = 0.0f;
@@ -31,11 +36,21 @@ public class TestThirdPersonCamera : MonoBehaviour
     private float targetXRotation = 0.0f;
     private float targetYRotation = 0.0f;
 
+    // --- METHODS ---
+    private void Start()
+    {
+        currentCameraDistance = cameraDistance;
+    }
 
-
-    void Update()
+    private void Update()
     {
         SetCameraLook();
+    }
+
+    private void LateUpdate()
+    {
+        currentCameraDistance += Input.GetAxisRaw("Mouse ScrollWheel") * cameraScollSpeed;
+        currentCameraDistance = Mathf.Clamp(currentCameraDistance, cameraMinDistance, cameraMaxDistance);
     }
 
     private void SetCameraLook()
@@ -50,7 +65,7 @@ public class TestThirdPersonCamera : MonoBehaviour
             targetXRotation = Mathf.Clamp(targetXRotation, xRotationLimits.x, xRotationLimits.y);
         }
 
-        if(USE_CAMERA_SMOOTHING)
+        if (USE_CAMERA_SMOOTHING)
         {
             currentCameraXRotation = Mathf.SmoothDampAngle(currentCameraXRotation, targetXRotation, ref xRotationVelocity, lookSmoothTime);
             currentCameraYRotation = Mathf.SmoothDampAngle(currentCameraYRotation, targetYRotation, ref yRotationVelocity, lookSmoothTime);
@@ -62,12 +77,13 @@ public class TestThirdPersonCamera : MonoBehaviour
         }
 
         Ray camRay = new Ray(cameraPivot.position, -cameraPivot.forward);
-        float maxDistance = cameraDistance;
-        if(Physics.SphereCast(camRay, 0.25f, out RaycastHit hitInfo, cameraDistance, camRaycastMask))
+        float maxDistance = currentCameraDistance;
+        if (Physics.SphereCast(camRay, 0.25f, out RaycastHit hitInfo, maxDistance, camRaycastMask))
         {
             maxDistance = (hitInfo.point - cameraPivot.position).magnitude - 0.25f;
         }
 
+        maxDistance = Mathf.Clamp(maxDistance, cameraMinDistance, cameraMaxDistance);
         cameraTransform.localPosition = Vector3.forward * -(maxDistance - 0.1f);
     }
 }
