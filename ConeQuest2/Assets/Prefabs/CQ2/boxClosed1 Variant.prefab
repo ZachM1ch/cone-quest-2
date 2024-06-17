@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8723140507261381230, guid: 08b03e51f135051498b3b57d56c82149, type: 3}
       propertyPath: m_TagString
-      value: Metal
+      value: Paper
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08b03e51f135051498b3b57d56c82149, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 08b03e51f135051498b3b57d56c82149, type: 3}
       propertyPath: m_LocalScale.x
@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7043654301768960676, guid: 08b03e51f135051498b3b57d56c82149, type: 3}
       propertyPath: m_TagString
-      value: Metal
+      value: Paper
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 08b03e51f135051498b3b57d56c82149, type: 3}
       propertyPath: m_Name
@@ -87,6 +87,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 08b03e51f135051498b3b57d56c82149, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 08b03e51f135051498b3b57d56c82149, type: 3}
+      propertyPath: m_TagString
+      value: Paper
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
