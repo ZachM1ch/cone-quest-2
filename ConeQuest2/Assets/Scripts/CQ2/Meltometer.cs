@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
@@ -20,6 +21,12 @@ public class Meltometer : MonoBehaviour
 
     GameObject terry;
 
+    public GameObject meterMask;
+
+    private void Awake()
+    {
+    }
+
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
@@ -33,23 +40,38 @@ public class Meltometer : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             ChangeMeter(-6);
         }
 
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            if (currentMeter > 2)
+            //if (currentMeter > 2)
                 ChangeMeter(-3);
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ChangeMeter(-1);
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            ChangeMeter(1);
         }
 
         if (CheckIfDead())
         {
+            //ChangeMeter(MAX_METER);
+            
+            
             Vector3 lastCheckpointPos = lastCheckpoint.transform.position;
             lastCheckpointPos.y += 1;
             terry.transform.position = lastCheckpointPos;
-            currentMeter = 3;
+
+            ChangeMeter(((float)Math.Ceiling(MAX_METER / 2)) - 1);
+            currentMeter += 1;
+            
         }
     }
 
@@ -60,6 +82,9 @@ public class Meltometer : MonoBehaviour
     public void ChangeMeter(float increment)
     {
         currentMeter += increment;
+
+        meterMask.GetComponent<UIMeltometer>().MoveMeltBar(increment);
+
         if (currentMeter > MAX_METER)
         {
             currentMeter = MAX_METER;

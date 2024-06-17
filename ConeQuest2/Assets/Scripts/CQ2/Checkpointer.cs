@@ -43,10 +43,11 @@ public class Checkpointer : MonoBehaviour
     {
         if (isActive)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 if (CPID != 0)
                 {
+                    terry.transform.parent.GetComponent<SFXPlayer>().PlayBreakCheckpoint();
                     terry.transform.parent.GetComponent<Meltometer>().ChangeMeter(healValue);
                     isActive = false;
                     GameManager.GM.RemoveCheckpointFromList(CPID);
@@ -103,11 +104,17 @@ public class Checkpointer : MonoBehaviour
         {
             if (!isBroken) 
             {
+                if (!isActive)
+                {
+                    other.transform.parent.GetComponent<SFXPlayer>().PlayCheckpoint();
+                }
+
                 wasTriggered = true;
                 isActive = true;
                 GameObject text = this.gameObject.transform.GetChild(0).gameObject;
                 text.GetComponent<MeshRenderer>().enabled = true;
                 other.transform.parent.GetComponent<Meltometer>().SetLastCheckpoint(this.gameObject);
+                
                 if (other != null)
                 {
                     transform.LookAt(other.transform);

@@ -8,6 +8,16 @@ TagManager:
   - Heat
   - Checkpoint
   - CheckpointTrigger
+  - Bounce
+  - Organic
+  - Other
+  - Glass
+  - Paper
+  - Plastic
+  - Metal
+  - MeterTick
+  - MeterBar
+  - MeterMask
   layers:
   - Default
   - TransparentFX

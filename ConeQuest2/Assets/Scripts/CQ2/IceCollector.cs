@@ -51,6 +51,7 @@ public class IceCollector : MonoBehaviour
             if (other.transform.parent.GetComponent<Meltometer>().currentMeter < Meltometer.MAX_METER)
             {                
                 UnmeltPlayer(other);
+                other.transform.parent.GetComponent<SFXPlayer>().PlayCollect();
                 Destroy(this.gameObject);
             }
         }
