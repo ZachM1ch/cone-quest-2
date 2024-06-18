@@ -7,7 +7,16 @@ public class BlobBehavior : MonoBehaviour
     [Header("Stats")]
     public float meltTime;
 
+
+    public Mesh landedMesh;
+    public Material landedMaterial;
+
     private Rigidbody rb;
+
+    private MeshFilter meshFilter;
+    private MeshRenderer meshRenderer;
+    
+
 
     private bool targetHit;
 
@@ -15,14 +24,39 @@ public class BlobBehavior : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        meshFilter = GetComponent<MeshFilter>();
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     private void Update()
     {
         if(targetHit)
         {
+            meshFilter.mesh = landedMesh;
+            meshRenderer.material = landedMaterial;
+            transform.up = Vector3.up;
+            
+
             Invoke(nameof(DeleteBlob), meltTime);
         }
+
+
+        // bad code formatting, don't drink Jadon's kool-aid
+        /*if (rb.velocity.magnitude > 0.0f)
+        {
+            transform.rotation = Quaternion.LookRotation(rb.velocity, Vector3.up);
+        }*/
+
+        // good code formatting
+        // :)
+        if (rb.velocity.magnitude > 0.0f)
+        {
+            transform.rotation = Quaternion.LookRotation(rb.velocity.normalized, Vector3.up);
+            transform.Rotate(Vector3.up * -90, Space.Self);
+        }
+
+        
+        Debug.DrawRay(transform.position, rb.velocity.normalized);
     }
 
     private void OnCollisionEnter(Collision collision)

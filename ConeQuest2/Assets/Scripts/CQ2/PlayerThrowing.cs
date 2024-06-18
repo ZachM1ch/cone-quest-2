@@ -45,6 +45,7 @@ public class PlayerThrowing : MonoBehaviour
         // instantiate object to throw
         GameObject blob = Instantiate(objectToThrow, throwPoint.position, cam.rotation);
 
+
         // get rigidbody component
         Rigidbody blobRb = blob.GetComponent<Rigidbody>();
 
