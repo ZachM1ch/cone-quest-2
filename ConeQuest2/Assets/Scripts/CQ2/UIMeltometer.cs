@@ -9,9 +9,9 @@ using UnityEngine.UI;
 
 public class UIMeltometer : MonoBehaviour
 {
-    public List<Image> tickMarks;
+    public List<RawImage> tickMarks;
 
-    public Image currentTick;
+    public RawImage currentTick;
     public int currentTickIndex;
 
     RawImage meterBar;
@@ -31,11 +31,7 @@ public class UIMeltometer : MonoBehaviour
             {
                 meterBar = g;
             }
-        }
-
-        foreach (Image g in Image.FindObjectsOfType(typeof(Image)))
-        {
-            if (g.tag =="MeterTick")
+            if (g.tag == "MeterTick")
             {
                 tickMarks.Add(g);
             }
