@@ -18,6 +18,8 @@ public class ThirdPersonCamera : MonoBehaviour
 
     public float cameraScollSpeed = 0.0f;
 
+    public float sphereCastRadius = 0.25f;
+
     [Space]
     public bool LOCK_MOUSE = true;
     public bool CAMERA_ENABLED = true;
@@ -53,7 +55,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        currentCameraDistance += Input.GetAxisRaw("Mouse ScrollWheel") * cameraScollSpeed;
+        currentCameraDistance -= Input.GetAxisRaw("Mouse ScrollWheel") * cameraScollSpeed;
         currentCameraDistance = Mathf.Clamp(currentCameraDistance, cameraMinDistance, cameraMaxDistance);
     }
 
@@ -85,9 +87,9 @@ public class ThirdPersonCamera : MonoBehaviour
 
         Ray camRay = new Ray(cameraPivot.position, -cameraPivot.forward);
         float maxDistance = currentCameraDistance;
-        if (Physics.SphereCast(camRay, 0.25f, out RaycastHit hitInfo, maxDistance, camRaycastMask))
+        if (Physics.SphereCast(camRay, sphereCastRadius, out RaycastHit hitInfo, maxDistance, camRaycastMask))
         {
-            maxDistance = (hitInfo.point - cameraPivot.position).magnitude - 0.25f;
+            maxDistance = (hitInfo.point - cameraPivot.position).magnitude - sphereCastRadius;
         }
         Debug.DrawRay(cameraPivot.position, -cameraPivot.forward * maxDistance, Color.red);
 
