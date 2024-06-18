@@ -10,6 +10,7 @@ public class PlayerThrowing : MonoBehaviour
     public Transform cam;
     public Transform throwPoint;
     public GameObject objectToThrow;
+    public Transform orientaion;
 
     [Header("Settings")]
     public int totalThrows;
@@ -20,7 +21,7 @@ public class PlayerThrowing : MonoBehaviour
     public float throwUpwardForce;
 
     private bool readyToThrow;
-    private bool throwing;
+    private bool throwInput;
 
     private void Start()
     {
@@ -31,11 +32,10 @@ public class PlayerThrowing : MonoBehaviour
     void Update()
     {
         // if player is trying and able to throw blob
-        if(throwing && readyToThrow && totalThrows > 0)
+        if (throwInput && readyToThrow && totalThrows > 0)
         {
             Throw();
         }
-
     }
 
     private void Throw()
@@ -66,6 +66,6 @@ public class PlayerThrowing : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        throwing = context.ReadValueAsButton();
+        throwInput = context.ReadValueAsButton();
     }
 }
