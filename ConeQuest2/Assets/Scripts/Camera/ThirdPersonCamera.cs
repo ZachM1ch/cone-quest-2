@@ -74,10 +74,13 @@ public class ThirdPersonCamera : MonoBehaviour
             currentCameraXRotation = Mathf.SmoothDampAngle(currentCameraXRotation, targetXRotation, ref xRotationVelocity, lookSmoothTime);
             currentCameraYRotation = Mathf.SmoothDampAngle(currentCameraYRotation, targetYRotation, ref yRotationVelocity, lookSmoothTime);
             cameraPivot.eulerAngles = new Vector3(currentCameraXRotation, currentCameraYRotation, 0.0f);
+            cameraTransform.eulerAngles = cameraPivot.eulerAngles;
         }
         else
         {
             cameraPivot.eulerAngles = new Vector3(targetXRotation, targetYRotation, 0.0f);
+            cameraTransform.eulerAngles = cameraPivot.eulerAngles;
+            //cameraTransform.eulerAngles = new Vector3(targetXRotation, targetYRotation, 0.0f);
         }
 
         Ray camRay = new Ray(cameraPivot.position, -cameraPivot.forward);
@@ -86,11 +89,13 @@ public class ThirdPersonCamera : MonoBehaviour
         {
             maxDistance = (hitInfo.point - cameraPivot.position).magnitude - 0.25f;
         }
+        Debug.DrawRay(cameraPivot.position, -cameraPivot.forward * maxDistance, Color.red);
 
-        maxDistance = Mathf.Clamp(maxDistance, cameraMinDistance, cameraMaxDistance);
-        cameraTransform.localPosition = Vector3.forward * -(maxDistance - 0.1f);
+        //maxDistance = Mathf.Clamp(maxDistance, cameraMinDistance, cameraMaxDistance);
+        //cameraTransform.localPosition = Vector3.forward * -(maxDistance - 0.1f);
+        cameraTransform.localPosition = cameraPivot.position + (-cameraPivot.forward) * (maxDistance - 0.1f);
     }
-
+    
     private void CheckMouseLock()
     {
         if(LOCK_MOUSE)
