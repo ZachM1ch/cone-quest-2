@@ -19,6 +19,8 @@ public class ThirdPersonCamera : MonoBehaviour
     public float cameraScollSpeed = 0.0f;
 
     [Space]
+    public bool LOCK_MOUSE = true;
+    public bool CAMERA_ENABLED = true;
     public bool USE_CAMERA_SMOOTHING = true;
 
     [Space]
@@ -40,10 +42,12 @@ public class ThirdPersonCamera : MonoBehaviour
     private void Start()
     {
         currentCameraDistance = cameraDistance;
+        CheckMouseLock();
     }
 
     private void Update()
     {
+        CheckMouseLock();
         SetCameraLook();
     }
 
@@ -55,7 +59,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void SetCameraLook()
     {
-        if (Input.GetMouseButton(1))
+        if (CAMERA_ENABLED)
         {
             float mouseX = Input.GetAxis("Mouse X");
             float mouseY = Input.GetAxis("Mouse Y");
@@ -85,5 +89,27 @@ public class ThirdPersonCamera : MonoBehaviour
 
         maxDistance = Mathf.Clamp(maxDistance, cameraMinDistance, cameraMaxDistance);
         cameraTransform.localPosition = Vector3.forward * -(maxDistance - 0.1f);
+    }
+
+    private void CheckMouseLock()
+    {
+        if(LOCK_MOUSE)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    public void SetMouseLock(bool state)
+    {
+        LOCK_MOUSE = state;
+    }
+
+    public void SetCameraEnabled(bool state)
+    {
+        CAMERA_ENABLED = state;
     }
 }
