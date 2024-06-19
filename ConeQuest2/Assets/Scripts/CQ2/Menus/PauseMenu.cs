@@ -51,6 +51,17 @@ public class PauseMenu : MonoBehaviour
         isPaused = state;
         cameraScript.SetCameraEnabled(!state);
         cameraScript.SetMouseLock(!state);
+
+        if(state == true)
+        {
+            // Pause game
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            // Resume game
+            Time.timeScale = 1.0f;
+        }
     }
 
     private void LoadVolume()
