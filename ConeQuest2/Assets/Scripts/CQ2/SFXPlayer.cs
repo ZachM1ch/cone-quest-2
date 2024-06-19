@@ -21,6 +21,10 @@ public class SFXPlayer : MonoBehaviour
     public AudioClip[] plasticClips;
     public AudioClip[] metalClips;
 
+    public AudioClip[] crunchClips;
+    public AudioClip[] iceClips;
+    public AudioClip[] failMowerClips;
+    public AudioClip[] YesMowerClip;
 
     // Start is called before the first frame update
     void Start()
@@ -86,7 +90,7 @@ public class SFXPlayer : MonoBehaviour
     /// </summary>
     public void PlayCheckpoint()
     {
-        PlaySound(sfx, 0);
+        PlaySound(sfx, 1);
     }
 
     /// <summary>
@@ -94,7 +98,7 @@ public class SFXPlayer : MonoBehaviour
     /// </summary>
     public void PlayBreakCheckpoint()
     {
-        PlaySound(sfx, 1);
+        PlayRandomSound(crunchClips);
     }
 
     /// <summary>
@@ -102,7 +106,23 @@ public class SFXPlayer : MonoBehaviour
     /// </summary>
     public void PlayCollect()
     {
-        PlayRandomSound(impactClips);
+        PlayRandomSound(iceClips);
+    }
+
+    /// <summary>
+    /// Plays the sound for triggering fail of lawnmower
+    /// </summary>
+    public void PlayFailmower()
+    {
+        PlayRandomSound(failMowerClips);
+    }
+
+    /// <summary>
+    /// Plays the sound for triggering fail of lawnmower
+    /// </summary>
+    public void PlayYesmower()
+    {
+        PlaySound(YesMowerClip, 0);
     }
 
     /// <summary>

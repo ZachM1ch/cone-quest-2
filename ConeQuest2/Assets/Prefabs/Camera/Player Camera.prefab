@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8125748051411443116}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4159799601816417102
 Camera:
@@ -110,15 +110,21 @@ MonoBehaviour:
     m_Bits: 1025
   cameraTransform: {fileID: 5393818733662816854}
   cameraPivot: {fileID: 0}
+  playerOrientation: {fileID: 0}
+  player: {fileID: 0}
+  playerObj: {fileID: 0}
+  playerRb: {fileID: 0}
   lookSmoothTime: 0.1
   cameraDistance: 5
   cameraMaxDistance: 10
   cameraMinDistance: 2.5
   cameraScollSpeed: 2.5
   sphereCastRadius: 0.25
-  LOCK_MOUSE: 0
+  LOCK_MOUSE: 1
+  MOUSE_VISIBLE: 0
   CAMERA_ENABLED: 1
   USE_CAMERA_SMOOTHING: 1
   pivotOffset: {x: 0, y: 0, z: 0}
-  xRotationLimits: {x: -10, y: 90}
-  lookSensitivity: 5
+  xRotationLimits: {x: -10, y: 89}
+  lookSensitivity: 1.5
+  playerRotationSpeed: 20

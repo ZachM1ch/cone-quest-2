@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 public class ThirdPersonCam : MonoBehaviour
 {
     [Header("References")]
-    public Transform orientation;
+    public Transform playerOrientation;
     public Transform player;
     public Transform playerObj;
-    public Rigidbody rb;
+    public Rigidbody playerRb;
 
     public float rotationSpeed;
 
@@ -18,17 +18,15 @@ public class ThirdPersonCam : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        
+        Cursor.visible = false;        
     }
 
     private void FixedUpdate()
     {
         Vector3 viewDirection = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-        orientation.forward = viewDirection.normalized;
+        playerOrientation.forward = viewDirection.normalized;
 
-        Vector3 lookDirection = orientation.forward * inputDirection.z + orientation.right * inputDirection.x;
+        Vector3 lookDirection = playerOrientation.forward * inputDirection.z + playerOrientation.right * inputDirection.x;
 
         if (inputDirection != Vector3.zero)
         {

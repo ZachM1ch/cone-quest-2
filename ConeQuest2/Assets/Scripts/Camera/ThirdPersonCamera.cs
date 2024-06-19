@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class ThirdPersonCamera : MonoBehaviour
     public LayerMask camRaycastMask;
     public Transform cameraTransform;
     public Transform cameraPivot;
+
+    [Header("Player References")]
+    public Transform playerOrientation;
+    public Transform player;
+    public Transform playerObj;
+    public Rigidbody playerRb;
 
     [Space]
     //public float controllerLookSmoothTime = 0.0f;
@@ -22,6 +29,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     [Space]
     public bool LOCK_MOUSE = true;
+    public bool MOUSE_VISIBLE = false;
     public bool CAMERA_ENABLED = true;
     public bool USE_CAMERA_SMOOTHING = true;
 
@@ -30,6 +38,7 @@ public class ThirdPersonCamera : MonoBehaviour
     public Vector2 xRotationLimits = Vector2.zero;
 
     public float lookSensitivity = 1.0f;
+    public float playerRotationSpeed;
 
     // Used on the Player Camera to smooth rotating
     private float currentCameraDistance = 0.0f;
@@ -39,6 +48,8 @@ public class ThirdPersonCamera : MonoBehaviour
     private float yRotationVelocity = 0.0f;
     private float targetXRotation = 0.0f;
     private float targetYRotation = 0.0f;
+
+    private Vector3 inputDirection;
 
     // --- METHODS ---
     private void Start()
@@ -51,6 +62,18 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         CheckMouseLock();
         SetCameraLook();
+    }
+    private void FixedUpdate()
+    {
+        Vector3 viewDirection = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+        playerOrientation.forward = viewDirection.normalized;
+
+        Vector3 lookDirection = playerOrientation.forward * inputDirection.z + playerOrientation.right * inputDirection.x;
+
+        if (inputDirection != Vector3.zero)
+        {
+            playerObj.forward = Vector3.Slerp(playerObj.forward, lookDirection.normalized, Time.deltaTime * playerRotationSpeed);
+        }
     }
 
     private void LateUpdate()
@@ -118,5 +141,11 @@ public class ThirdPersonCamera : MonoBehaviour
     public void SetCameraEnabled(bool state)
     {
         CAMERA_ENABLED = state;
+    }
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        Vector3 direction = context.ReadValue<Vector3>();
+
+        inputDirection = new Vector3(direction.x, 0, direction.z);
     }
 }
