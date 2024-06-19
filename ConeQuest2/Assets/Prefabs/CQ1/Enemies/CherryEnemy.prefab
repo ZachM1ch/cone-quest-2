@@ -36,7 +36,7 @@ Transform:
   - {fileID: 5569039564203505089}
   - {fileID: 2731829492669486214}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7575187772711459933
 MonoBehaviour:
@@ -58,7 +58,7 @@ MonoBehaviour:
   ignoreYAxis: 1
   aggroLoseTime: 2
   exclamation: {fileID: 3277905232985300928}
-  spriteBillboard: {fileID: 0}
+  spriteBillboard: {fileID: 2035793958388376362}
 --- !u!54 &7336585488221862505
 Rigidbody:
   m_ObjectHideFlags: 0

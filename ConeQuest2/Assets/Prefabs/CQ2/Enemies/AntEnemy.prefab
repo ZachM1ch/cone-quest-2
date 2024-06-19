@@ -36,7 +36,7 @@ Transform:
   - {fileID: 3074618408851144873}
   - {fileID: 4760225653475876703}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6793519205585281117
 MonoBehaviour:
@@ -58,7 +58,7 @@ MonoBehaviour:
   ignoreYAxis: 1
   aggroLoseTime: 2
   exclamation: {fileID: 5376072003052246041}
-  spriteBillboard: {fileID: 0}
+  spriteBillboard: {fileID: 7381750456300935296}
 --- !u!54 &4436912614877243140
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52929203921253777}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ad58985d66497240ad31c423199529a, type: 3}
   m_Name: 

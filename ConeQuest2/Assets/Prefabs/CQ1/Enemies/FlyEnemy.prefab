@@ -154,7 +154,7 @@ Transform:
   - {fileID: 6465105398825992220}
   - {fileID: 6162254188977557507}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1304416350696020419
 MonoBehaviour:
@@ -176,7 +176,7 @@ MonoBehaviour:
   ignoreYAxis: 0
   aggroLoseTime: 2
   exclamation: {fileID: 6706040762990074693}
-  spriteBillboard: {fileID: 0}
+  spriteBillboard: {fileID: 5082856484267238544}
 --- !u!136 &7774536232491367343
 CapsuleCollider:
   m_ObjectHideFlags: 0
