@@ -58,7 +58,6 @@ public class PlayerThrowing : MonoBehaviour
 
         if(Physics.Raycast(throwPoint.position, cam.forward, out hit, 500f, 9 << 1))
         {
-            Debug.DrawRay(throwPoint.position, cam.forward, Color.blue, 40);
             forceDirection = (hit.point - throwPoint.position).normalized;
         }
 

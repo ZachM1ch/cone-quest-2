@@ -42,7 +42,6 @@ public class PatrolEnemy : MonoBehaviour
 
             if (patrolPoints.Count <= 1)
             {
-                Debug.LogWarning("Not enough patrol points! Pleased have a minimum of 2 patrol points.");
                 return;
             }
 
