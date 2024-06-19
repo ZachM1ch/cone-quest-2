@@ -96,10 +96,11 @@ public class PlayerHarmer : MonoBehaviour
     {
         other = col.gameObject;
 
-        if (other.CompareTag("Player") && this.gameObject.CompareTag("Enemy"))
+        if (other.CompareTag("Player") && this.gameObject.CompareTag("Heat"))
         {
             StaticMeltPlayer(other);
         }
+        /*
         else if (other.CompareTag("Player") && this.gameObject.CompareTag("Heat"))
         {
             startOfMeter = other.transform.parent.gameObject.GetComponent<Meltometer>().currentMeter;
@@ -109,6 +110,23 @@ public class PlayerHarmer : MonoBehaviour
             meterMask.GetComponent<UIMeltometer>().setupForGradual();
 
             GradualMeltPlayer(other);
+        }
+        */
+
+        other.transform.parent.gameObject.GetComponent<SFXPlayer>().PlayOuch();
+    }
+
+    /// <summary>
+    /// Collision Logic
+    /// </summary>
+    /// <param name="col"></param>
+    public void OnCollisionEnter(Collision col)
+    {
+        other = col.gameObject;
+
+        if (other.CompareTag("Player") && this.gameObject.CompareTag("Enemy"))
+        {
+            StaticMeltPlayer(other);
         }
 
         other.transform.parent.gameObject.GetComponent<SFXPlayer>().PlayOuch();
