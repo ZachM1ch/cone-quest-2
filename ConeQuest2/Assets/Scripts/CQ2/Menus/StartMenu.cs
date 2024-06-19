@@ -1,11 +1,44 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class StartMenu : MonoBehaviour
 {
+    [SerializeField] private VideoPlayer introVideoPlayer;
+    [SerializeField] private GameObject videoImage;
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("MasterVolume"))
+        {
+            float volume = PlayerPrefs.GetFloat("MasterVolume");
+            introVideoPlayer.SetDirectAudioVolume(0, volume);
+        }
+    }
+
+    private void PlayVideo()
+    {
+        StartCoroutine(WaitForVideo((float)introVideoPlayer.length));
+    }
+
+    private IEnumerator WaitForVideo(float clipLength)
+    {
+        introVideoPlayer.Prepare();
+        while (!introVideoPlayer.isPrepared)
+        {
+            yield return null;
+        }
+
+        introVideoPlayer.Play();
+        videoImage.SetActive(true);
+        yield return new WaitForSeconds(clipLength);
+        SceneManager.LoadScene(1);
+    }
+
     public void StartButton()
     {
-        SceneManager.LoadScene(1);
+        PlayVideo();
     }
 
     public void ExitButton()
