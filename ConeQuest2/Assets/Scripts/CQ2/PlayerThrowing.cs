@@ -17,6 +17,7 @@ public class PlayerThrowing : MonoBehaviour
     public float throwCooldown;
 
     [Header("Throwing")]
+    public bool ABLE_TO_THROW = true;
     public float throwForce;
     public float throwUpwardForce;
 
@@ -32,7 +33,7 @@ public class PlayerThrowing : MonoBehaviour
     void Update()
     {
         // if player is trying and able to throw blob
-        if (throwInput && readyToThrow && totalThrows > 0)
+        if (ABLE_TO_THROW && throwInput && readyToThrow && totalThrows > 0)
         {
             Throw();
             this.gameObject.GetComponent<Meltometer>().ChangeMeter(-1);

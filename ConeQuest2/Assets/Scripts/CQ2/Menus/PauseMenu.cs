@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
 
     [Space]
     [SerializeField] private ThirdPersonCamera cameraScript;
+    [SerializeField] private PlayerThrowing throwingScript;
 
     private bool isPaused = false;
 
@@ -51,6 +52,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = state;
         cameraScript.SetCameraEnabled(!state);
         cameraScript.SetMouseLock(!state);
+        throwingScript.ABLE_TO_THROW = !state;
 
         if(state == true)
         {
