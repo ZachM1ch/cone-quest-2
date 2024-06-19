@@ -40,6 +40,7 @@ public class StartMenu : MonoBehaviour
 
     public void StartButton()
     {
+#if UNITY_EDITOR
         if(SKIP_VIDEO)
         {
             SceneManager.LoadScene(1);
@@ -48,6 +49,9 @@ public class StartMenu : MonoBehaviour
         {
             PlayVideo();
         }
+#else
+        PlayVideo();
+#endif
     }
 
     public void ExitButton()
