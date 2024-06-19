@@ -29,6 +29,7 @@ public class BackgroundMusicPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if(Input.GetKeyDown(KeyCode.U))
         {
             kitchen.GetComponent<Checkpointer>().wasTriggered = true;
@@ -45,6 +46,7 @@ public class BackgroundMusicPlayer : MonoBehaviour
         {
             outside.GetComponent<Checkpointer>().wasTriggered = true;
         }
+        */
 
         if (kitchen.GetComponent<Checkpointer>().wasTriggered == true)
         {

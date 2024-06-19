@@ -46,6 +46,7 @@ public class Meltometer : MonoBehaviour
     /// </summary>
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Q))
         {
             ChangeMeter(-6);
@@ -65,7 +66,7 @@ public class Meltometer : MonoBehaviour
         {
             ChangeMeter(1);
         }
-
+        */
 
         if (CheckIfDead())
         {   
