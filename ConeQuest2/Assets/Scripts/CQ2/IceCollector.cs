@@ -49,8 +49,16 @@ public class IceCollector : MonoBehaviour
         {
 
             if (other.transform.parent.GetComponent<Meltometer>().currentMeter < Meltometer.MAX_METER)
-            {                
+            {
                 UnmeltPlayer(other);
+                other.transform.parent.GetComponent<SFXPlayer>().PlayCollect();
+                Destroy(this.gameObject);
+            }
+            else if (other.transform.parent.GetComponent<Meltometer>().hasBackpack == true && other.transform.parent.GetComponent<Meltometer>().hasCube == false)
+            {
+                other.transform.parent.GetComponent<Meltometer>().hasCube = true;
+                print(other.transform.GetChild(0).transform.GetChild(0).gameObject);
+                other.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
                 other.transform.parent.GetComponent<SFXPlayer>().PlayCollect();
                 Destroy(this.gameObject);
             }
