@@ -15,6 +15,7 @@ public class BlobBehavior : MonoBehaviour
 
     private MeshFilter meshFilter;
     private MeshRenderer meshRenderer;
+    private CapsuleCollider capsuleCollider;
     private Vector3 collisionNormal;
 
 
@@ -27,6 +28,7 @@ public class BlobBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         meshFilter = GetComponent<MeshFilter>();
         meshRenderer = GetComponent<MeshRenderer>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
     }
 
     private void Update()
@@ -35,8 +37,8 @@ public class BlobBehavior : MonoBehaviour
         {
             meshFilter.mesh = landedMesh;
             meshRenderer.material = landedMaterial;
-
-
+            capsuleCollider.enabled = false;
+            
             Invoke(nameof(DeleteBlob), meltTime);
         }
 

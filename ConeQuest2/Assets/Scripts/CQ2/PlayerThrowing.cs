@@ -49,8 +49,18 @@ public class PlayerThrowing : MonoBehaviour
         // get rigidbody component
         Rigidbody blobRb = blob.GetComponent<Rigidbody>();
 
+        Vector3 forceDirection = cam.transform.forward;
+
+        RaycastHit hit;
+
+        if(Physics.Raycast(throwPoint.position, cam.forward, out hit, 500f, 9 << 1))
+        {
+            Debug.DrawRay(throwPoint.position, cam.forward, Color.blue, 40);
+            forceDirection = (hit.point - throwPoint.position).normalized;
+        }
+
         // add force 
-        Vector3 forceToAdd = cam.transform.forward * throwForce + transform.up * throwUpwardForce;
+        Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce;
 
         blobRb.AddForce(forceToAdd, ForceMode.Impulse);
 
