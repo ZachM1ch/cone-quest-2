@@ -9,6 +9,10 @@ public class StartMenu : MonoBehaviour
     [SerializeField] private GameObject videoImage;
 
     public bool SKIP_VIDEO = false;
+    private void Awake()
+    {
+        Screen.SetResolution(1024, 768, true);
+    }
 
     private void Start()
     {
