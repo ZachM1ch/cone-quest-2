@@ -35,6 +35,8 @@ public class PlayerThrowing : MonoBehaviour
         if (throwInput && readyToThrow && totalThrows > 0)
         {
             Throw();
+            this.gameObject.GetComponent<Meltometer>().ChangeMeter(-1);
+            this.gameObject.GetComponent<SFXPlayer>().PlayOuch();
         }
     }
 
