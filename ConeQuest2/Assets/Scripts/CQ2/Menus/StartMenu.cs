@@ -8,6 +8,8 @@ public class StartMenu : MonoBehaviour
     [SerializeField] private VideoPlayer introVideoPlayer;
     [SerializeField] private GameObject videoImage;
 
+    public bool SKIP_VIDEO = false;
+
     private void Start()
     {
         if (PlayerPrefs.HasKey("MasterVolume"))
@@ -38,7 +40,14 @@ public class StartMenu : MonoBehaviour
 
     public void StartButton()
     {
-        PlayVideo();
+        if(SKIP_VIDEO)
+        {
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            PlayVideo();
+        }
     }
 
     public void ExitButton()
