@@ -8,7 +8,7 @@ public class PlayerHarmer : MonoBehaviour
 {
     [Header("Harm Values")]
     [Tooltip("Static Amount that the player will be hurt by")]
-    public float staticHarmAmount = 1;
+    public float staticHarmAmount = -1;
     [Tooltip("(UNUSED) Gradual Amount that the player will be hurt by")]
     public float gradualHarmAmount = 0.05F;
     [Tooltip("Ceiling of how much player will melt gradually")]
