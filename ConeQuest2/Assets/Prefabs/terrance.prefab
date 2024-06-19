@@ -228,6 +228,7 @@ MonoBehaviour:
   airMult: 0.4
   gravity: 10.5
   accelFactor: 0.1
+  playerAnimator: {fileID: 0}
   playerHeight: 0.4
   whatIsGround:
     serializedVersion: 2
@@ -251,6 +252,7 @@ MonoBehaviour:
   orientaion: {fileID: 5355011437156977416}
   totalThrows: 200
   throwCooldown: 0.5
+  ABLE_TO_THROW: 1
   throwForce: 12
   throwUpwardForce: 5
 --- !u!114 &117433413379545781
@@ -269,6 +271,9 @@ MonoBehaviour:
   lastCheckpoint: {fileID: 0}
   meterMask: {fileID: 0}
   currentGradual: 0
+  playerThrowing: {fileID: 2383521352256053120}
+  hasBackpack: 0
+  hasCube: 0
 --- !u!114 &7588109146507342329
 MonoBehaviour:
   m_ObjectHideFlags: 0

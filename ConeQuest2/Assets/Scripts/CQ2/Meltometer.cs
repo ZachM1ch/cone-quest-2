@@ -26,6 +26,8 @@ public class Meltometer : MonoBehaviour
 
     public float currentGradual;
 
+    public PlayerThrowing playerThrowing;
+
     public bool hasBackpack;
     public bool hasCube;
 
@@ -79,6 +81,8 @@ public class Meltometer : MonoBehaviour
             currentMeter += 1;
             
         }
+        else
+            playerThrowing.totalThrows = (int)currentMeter-1;
 
     }
 
