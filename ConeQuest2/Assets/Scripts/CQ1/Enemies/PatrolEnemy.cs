@@ -26,8 +26,10 @@ public class PatrolEnemy : MonoBehaviour
     // --- METHODS ---
     private void Start()
     {
+        int childCount = 0;
         spriteAnimator = GetComponentInChildren<Animator>();
-        int childCount = patrolPointsParentObj.transform.childCount;
+        if(patrolPointsParentObj)
+            childCount = patrolPointsParentObj.transform.childCount;
 
         for(int i = 0; i < childCount; i++)
         {

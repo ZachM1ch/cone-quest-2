@@ -50,7 +50,7 @@ public class PlayerHarmer : MonoBehaviour
     /// <param name="terry"> The player </param>
     void StaticMeltPlayer(GameObject terry)
     {
-        Meltometer melta = terry.transform.parent.GetComponent<Meltometer>();
+        Meltometer melta = terry.GetComponent<Meltometer>();
         melta.ChangeMeter(staticHarmAmount);
 
     }
@@ -96,9 +96,14 @@ public class PlayerHarmer : MonoBehaviour
     {
         other = col.gameObject;
 
-        if (other.CompareTag("Player") && this.gameObject.CompareTag("Heat"))
+        if (other.CompareTag("Player") && this.gameObject.CompareTag("Heat") && other)
         {
-            StaticMeltPlayer(other);
+            StaticMeltPlayer(other.transform.parent.gameObject);
+
+            var sfx = other.transform.parent.gameObject.GetComponent<SFXPlayer>();
+
+            if (sfx)
+                sfx.PlayOuch();
         }
         /*
         else if (other.CompareTag("Player") && this.gameObject.CompareTag("Heat"))
@@ -112,8 +117,6 @@ public class PlayerHarmer : MonoBehaviour
             GradualMeltPlayer(other);
         }
         */
-
-        other.transform.parent.gameObject.GetComponent<SFXPlayer>().PlayOuch();
     }
 
     /// <summary>
@@ -124,11 +127,14 @@ public class PlayerHarmer : MonoBehaviour
     {
         other = col.gameObject;
 
-        if (other.CompareTag("Player") && this.gameObject.CompareTag("Enemy"))
+        if (other.CompareTag("Player") && this.gameObject.CompareTag("Enemy") && other)
         {
             StaticMeltPlayer(other);
-        }
 
-        other.transform.parent.gameObject.GetComponent<SFXPlayer>().PlayOuch();
+            var sfx = other.transform.GetComponent<SFXPlayer>();
+
+            if (sfx)
+                sfx.PlayOuch();
+        }
     }
 }
