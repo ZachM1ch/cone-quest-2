@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool readyToJump;
 
+    public Animator playerAnimator;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -33,6 +34,13 @@ public class PlayerMovement : MonoBehaviour
     private SkinnedMeshRenderer mesh;
 
     private float accel;
+
+    private enum ANIM_STATE
+    {
+        IDLE = 0,
+        WALK,
+        JUMP
+    }
 
     private void Start()
     {
@@ -58,6 +66,19 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0.0f;
+
+        if(!grounded)
+        {
+            SetAnimatorState(ANIM_STATE.JUMP);
+        }
+        else if(inputDirection != Vector3.zero && grounded && rb.velocity.y <= 0.0f)
+        {
+            SetAnimatorState(ANIM_STATE.WALK);
+        }
+        else if (grounded)
+        {
+            SetAnimatorState(ANIM_STATE.IDLE);
+        }
     }
 
     private void FixedUpdate()
@@ -133,5 +154,15 @@ public class PlayerMovement : MonoBehaviour
     {
         // get directional input vector
         inputDirection = context.ReadValue<Vector3>();
+    }
+
+    private void SetAnimatorState(ANIM_STATE state)
+    {
+        playerAnimator.SetInteger("AnimState", (int)state);
+    }
+
+    private ANIM_STATE GetAnimatorState()
+    {
+        return (ANIM_STATE)playerAnimator.GetInteger("AnimState");
     }
 }
