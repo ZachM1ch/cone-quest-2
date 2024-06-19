@@ -86,6 +86,8 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitButton()
     {
+        cameraScript.SetMouseLock(false);
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(0);
     }
 
