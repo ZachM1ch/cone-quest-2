@@ -52,6 +52,7 @@ public class PlayerHarmer : MonoBehaviour
     {
         Meltometer melta = terry.transform.parent.GetComponent<Meltometer>();
         melta.ChangeMeter(staticHarmAmount);
+
     }
 
     /// <summary>
