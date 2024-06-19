@@ -15,7 +15,8 @@ public class BlobBehavior : MonoBehaviour
 
     private MeshFilter meshFilter;
     private MeshRenderer meshRenderer;
-    
+    private Vector3 collisionNormal;
+
 
 
     private bool targetHit;
@@ -30,12 +31,11 @@ public class BlobBehavior : MonoBehaviour
 
     private void Update()
     {
-        if(targetHit)
+        if (targetHit)
         {
             meshFilter.mesh = landedMesh;
             meshRenderer.material = landedMaterial;
-            transform.up = Vector3.up;
-            
+
 
             Invoke(nameof(DeleteBlob), meltTime);
         }
@@ -55,7 +55,7 @@ public class BlobBehavior : MonoBehaviour
             transform.Rotate(Vector3.up * -90, Space.Self);
         }
 
-        
+
         Debug.DrawRay(transform.position, rb.velocity.normalized);
     }
 
@@ -67,11 +67,9 @@ public class BlobBehavior : MonoBehaviour
         else
             targetHit = true;
 
-        Debug.Log("HIT " + collision.gameObject.name);
-
         rb.isKinematic = true;
 
-        transform.SetParent(collision.transform);
+        transform.up = collision.contacts[0].normal;
     }
 
     private void DeleteBlob()
