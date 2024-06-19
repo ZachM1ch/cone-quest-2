@@ -5,6 +5,7 @@ using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class Meltometer : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class Meltometer : MonoBehaviour
     public GameObject meterMask;
 
     public float currentGradual;
+
+    public bool hasBackpack;
+    public bool hasCube;
 
     private void Awake()
     {
@@ -62,10 +66,6 @@ public class Meltometer : MonoBehaviour
             ChangeMeter(1);
         }
 
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            ChangeMeter(1);
-        }
 
         if (CheckIfDead())
         {   
@@ -87,19 +87,26 @@ public class Meltometer : MonoBehaviour
     /// <param name="increment"> Amount meter will change by </param>
     public void ChangeMeter(float increment)
     {
-        currentMeter += increment;
-
-        print("begin melt");
-        meterMask.GetComponent<UIMeltometer>().MoveMeltBar(increment);
-
-        if (currentMeter > MAX_METER)
+        if (hasBackpack && hasCube && increment < 0)
         {
-            currentMeter = MAX_METER;
+            hasCube = false;
+            this.gameObject.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
         }
-        else if (currentMeter < MIN_METER)
+        else
         {
-            currentMeter = MIN_METER;
-        }
+            currentMeter += increment;
+
+            meterMask.GetComponent<UIMeltometer>().MoveMeltBar(increment);
+
+            if (currentMeter > MAX_METER)
+            {
+                currentMeter = MAX_METER;
+            }
+            else if (currentMeter < MIN_METER)
+            {
+                currentMeter = MIN_METER;
+            }
+        }   
     }
 
     /// <summary>
