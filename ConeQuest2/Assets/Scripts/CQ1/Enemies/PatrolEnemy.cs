@@ -9,12 +9,24 @@ public class PatrolEnemy : MonoBehaviour
     private List<Transform> patrolPoints = new List<Transform>();
     private int currPatrolPoint = 0;
     [SerializeField] private float pointCollisionDist = 0.5f;
-    [SerializeField] private float moveSpeed = 2.0f;
+    [SerializeField] private float currentMoveSpeed = 2.0f;
+    [SerializeField] private float patrolMoveSpeed = 2.0f;
+    [SerializeField] private float aggroMoveSpeed = 4.0f;
     [SerializeField] private bool ignoreYAxis = true;
+
+    [SerializeField] private float aggroLoseTime = 2.0f;
+    [SerializeField] public GameObject exclamation;
+    [SerializeField] public SpriteBillboard spriteBillboard;
+
+    private Animator spriteAnimator;
+
+    private Vector3 followPoint;
+    private bool followPatrolPoints = true;
 
     // --- METHODS ---
     private void Start()
     {
+        spriteAnimator = GetComponentInChildren<Animator>();
         int childCount = patrolPointsParentObj.transform.childCount;
 
         for(int i = 0; i < childCount; i++)
@@ -25,38 +37,91 @@ public class PatrolEnemy : MonoBehaviour
 
     private void Update()
     {
-        if(patrolPoints.Count <= 1)
+        if (followPatrolPoints)
         {
-            Debug.LogWarning("Not enough patrol points! Pleased have a minimum of 2 patrol points.");
-            return;
-        }
 
-        // Check if enemy has reached next patrol point
-        float distToNextPoint = Vector3.Distance(transform.position, patrolPoints[currPatrolPoint].position);
-
-        if(distToNextPoint <= pointCollisionDist)
-        {
-            // We have reached next point, so move on to the next point.
-            currPatrolPoint += 1;
-            
-            if(currPatrolPoint >= patrolPoints.Count)
+            if (patrolPoints.Count <= 1)
             {
-                currPatrolPoint = 0;
+                Debug.LogWarning("Not enough patrol points! Pleased have a minimum of 2 patrol points.");
+                return;
             }
+
+            // Check if enemy has reached next patrol point
+            float distToNextPoint = Vector3.Distance(transform.position, patrolPoints[currPatrolPoint].position);
+
+            if (distToNextPoint <= pointCollisionDist)
+            {
+                // We have reached next point, so move on to the next point.
+                currPatrolPoint += 1;
+
+                if (currPatrolPoint >= patrolPoints.Count)
+                {
+                    currPatrolPoint = 0;
+                }
+            }
+
+            // Move towards currPatrolPoint
+            Vector3 pointDirection = patrolPoints[currPatrolPoint].position - transform.position;
+
+            // Ignore moving enemy on the Y-Axis
+            if (ignoreYAxis)
+            {
+                pointDirection.y = 0.0f;
+            }
+
+            pointDirection = pointDirection.normalized;
+
+            transform.Translate(pointDirection * currentMoveSpeed * Time.deltaTime);
         }
-
-        // Move towards currPatrolPoint
-        Vector3 pointDirection = patrolPoints[currPatrolPoint].position - transform.position;
-
-        // Ignore moving enemy on the Y-Axis
-        if(ignoreYAxis)
+        else
         {
-            pointDirection.y = 0.0f;
+            Vector3 pointDirection = (followPoint - transform.position).normalized;
+            
+            transform.Translate(pointDirection * currentMoveSpeed * Time.deltaTime);
         }
+    }
 
-        pointDirection = pointDirection.normalized;
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Blob")
+        {
+            spriteBillboard.enabled = false;
+            spriteAnimator.Play("Death");
+        }
+    }
 
-        transform.Translate(pointDirection * moveSpeed * Time.deltaTime);
+    private void OnTriggerEnter(Collider collision)
+    {
+        // :)
+        if(followPatrolPoints && collision.gameObject.tag == "Player")
+            exclamation.GetComponent<Animator>().Play("Bounce");
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (followPatrolPoints)
+            {
+                followPatrolPoints = false;
+                currentMoveSpeed = aggroMoveSpeed;
+            }
+            followPoint = other.gameObject.transform.position;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Invoke(nameof(LoseAggro), aggroLoseTime);
+        }
+    }
+
+    private void LoseAggro()
+    {
+        followPatrolPoints = true;
+        currentMoveSpeed = patrolMoveSpeed;
     }
 
 }
