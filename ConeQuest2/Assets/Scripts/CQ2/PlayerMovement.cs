@@ -42,6 +42,10 @@ public class PlayerMovement : MonoBehaviour
         JUMP
     }
 
+    private void Awake()
+    {
+        Screen.SetResolution(1024, 768, true);   
+    }
     private void Start()
     {
         mesh = GetComponentInChildren<SkinnedMeshRenderer>();
