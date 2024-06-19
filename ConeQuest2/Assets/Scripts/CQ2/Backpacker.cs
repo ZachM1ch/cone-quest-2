@@ -26,7 +26,7 @@ public class Backpacker : MonoBehaviour
     public void OnTriggerEnter(Collider col)
     {
         other = col.gameObject;
-
+        print(other.gameObject);
         if (other.CompareTag("Player"))
         {
             print(other.gameObject);

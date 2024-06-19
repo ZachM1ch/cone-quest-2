@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class EndGame : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            Application.Quit();
+            SceneManager.LoadScene(2);
         }
     }
 
