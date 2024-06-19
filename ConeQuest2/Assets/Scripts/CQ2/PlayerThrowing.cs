@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,27 +6,67 @@ using UnityEngine.InputSystem;
 
 public class PlayerThrowing : MonoBehaviour
 {
+    [Header("References")]
+    public Transform cam;
     public Transform throwPoint;
-    public GameObject throwObject;
+    public GameObject objectToThrow;
+    public Transform orientaion;
 
-    private bool throwing;
+    [Header("Settings")]
+    public int totalThrows;
+    public float throwCooldown;
 
+    [Header("Throwing")]
+    public float throwForce;
+    public float throwUpwardForce;
 
-    // Start is called before the first frame update
-    void Start()
+    private bool readyToThrow;
+    private bool throwInput;
+
+    private void Start()
     {
-        
+        readyToThrow = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (throwing)
-            Instantiate(throwObject, throwPoint, true);
+        // if player is trying and able to throw blob
+        if (throwInput && readyToThrow && totalThrows > 0)
+        {
+            Throw();
+        }
+    }
+
+    private void Throw()
+    {
+        readyToThrow = false;
+
+        // instantiate object to throw
+        GameObject blob = Instantiate(objectToThrow, throwPoint.position, cam.rotation);
+
+
+        // get rigidbody component
+        Rigidbody blobRb = blob.GetComponent<Rigidbody>();
+
+        // add force 
+        Vector3 forceToAdd = cam.transform.forward * throwForce + transform.up * throwUpwardForce;
+
+        blobRb.AddForce(forceToAdd, ForceMode.Impulse);
+
+        totalThrows--;
+
+        // implement throwCooldown
+        Invoke(nameof(ResetThrow), throwCooldown);
+    }
+
+    private void ResetThrow()
+    {
+        readyToThrow = true;
     }
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        throwing = context.ReadValueAsButton();
+        throwInput = context.ReadValueAsButton();
     }
 }
