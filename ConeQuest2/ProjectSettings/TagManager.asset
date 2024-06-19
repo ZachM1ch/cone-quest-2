@@ -18,6 +18,7 @@ TagManager:
   - MeterTick
   - MeterBar
   - MeterMask
+  - Blob
   layers:
   - Default
   - TransparentFX
