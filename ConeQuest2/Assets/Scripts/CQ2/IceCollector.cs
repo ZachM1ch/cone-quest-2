@@ -35,6 +35,8 @@ public class IceCollector : MonoBehaviour
     {
         Meltometer melta = terry.transform.parent.GetComponent<Meltometer>();
         melta.ChangeMeter(healAmount);
+        PlayerThrowing pt = terry.transform.parent.GetComponent<PlayerThrowing>();
+        pt.totalThrows += (int) healAmount;
     }
 
     /// <summary>

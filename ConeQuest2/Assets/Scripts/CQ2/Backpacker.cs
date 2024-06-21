@@ -30,6 +30,7 @@ public class Backpacker : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             print(other.gameObject);
+            other.transform.parent.GetComponent<PlayerThrowing>().totalThrows += 1;
             other.transform.parent.GetComponent<Meltometer>().hasBackpack = true;
             other.transform.GetChild(0).gameObject.SetActive(true);
             Destroy(this.gameObject);

@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Checkpointer : MonoBehaviour
 {
-    public float healValue = 5;
+    public float healValue = 3;
 
     public int CPID;
     
@@ -47,8 +47,10 @@ public class Checkpointer : MonoBehaviour
             {
                 if (CPID != 0)
                 {
+                    print(CPID);
                     terry.transform.parent.GetComponent<SFXPlayer>().PlayBreakCheckpoint();
                     terry.transform.parent.GetComponent<Meltometer>().ChangeMeter(healValue);
+                    terry.transform.parent.GetComponent<PlayerThrowing>().totalThrows = (int) terry.transform.parent.GetComponent<Meltometer>().currentMeter - 1;
                     isActive = false;
                     GameManager.GM.RemoveCheckpointFromList(CPID);
                     particleExplosion.SetActive(true);
@@ -107,10 +109,10 @@ public class Checkpointer : MonoBehaviour
                 if (!isActive)
                 {
                     other.transform.parent.GetComponent<SFXPlayer>().PlayCheckpoint();
+                    isActive = true;
                 }
 
                 wasTriggered = true;
-                isActive = true;
                 GameObject text = this.gameObject.transform.GetChild(0).gameObject;
                 text.GetComponent<MeshRenderer>().enabled = true;
                 other.transform.parent.GetComponent<Meltometer>().SetLastCheckpoint(this.gameObject);

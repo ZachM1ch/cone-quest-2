@@ -5,6 +5,7 @@ using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class Meltometer : MonoBehaviour
@@ -69,14 +70,23 @@ public class Meltometer : MonoBehaviour
         */
 
         if (CheckIfDead())
-        {   
-            
+        {
+            this.gameObject.GetComponent<PlayerMovement>().enabled = false;
+            this.gameObject.GetComponent<PlayerInput>().enabled = false;
+            this.gameObject.GetComponent<PlayerThrowing>().enabled = false;
+
             Vector3 lastCheckpointPos = lastCheckpoint.transform.position;
             lastCheckpointPos.y += 1;
             terry.transform.position = lastCheckpointPos;
 
+            this.gameObject.GetComponent<PlayerMovement>().enabled = true;
+            this.gameObject.GetComponent<PlayerInput>().enabled = true;
+            this.gameObject.GetComponent<PlayerThrowing>().enabled = false;
+
             ChangeMeter(((float)Math.Ceiling(MAX_METER / 2)) - 1);
             currentMeter += 1;
+
+            
             
         }
 

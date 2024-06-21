@@ -24,6 +24,8 @@ public class BackgroundMusicPlayer : MonoBehaviour
     void Start()
     {
         myBoombox = GetComponent<AudioSource>();
+
+        
     }
 
     // Update is called once per frame
@@ -48,25 +50,26 @@ public class BackgroundMusicPlayer : MonoBehaviour
         }
         */
 
-        if (kitchen.GetComponent<Checkpointer>().wasTriggered == true)
+
+        if (kitchen.GetComponent<MusicTrigger>().wasTriggered == true)
         {
             PlaySound(0);
-            kitchen.GetComponent<Checkpointer>().wasTriggered = false;
+            kitchen.GetComponent<MusicTrigger>().wasTriggered = false;
         }
-        if (livingRoom.GetComponent<Checkpointer>().wasTriggered == true)
+        if (livingRoom.GetComponent<MusicTrigger>().wasTriggered == true)
         {
             PlaySound(1);
-            livingRoom.GetComponent<Checkpointer>().wasTriggered = false;
+            livingRoom.GetComponent<MusicTrigger>().wasTriggered = false;
         }
-        if (garage.GetComponent<Checkpointer>().wasTriggered == true)
+        if (garage.GetComponent<MusicTrigger>().wasTriggered == true)
         {
             PlaySound(2);
-            garage.GetComponent<Checkpointer>().wasTriggered = false;
+            garage.GetComponent<MusicTrigger>().wasTriggered = false;
         }
-        if (outside.GetComponent<Checkpointer>().wasTriggered == true)
+        if (outside.GetComponent<MusicTrigger>().wasTriggered == true)
         {
             PlaySound(3);
-            outside.GetComponent<Checkpointer>().wasTriggered = false;
+            outside.GetComponent<MusicTrigger>().wasTriggered = false;
         }
 
     }

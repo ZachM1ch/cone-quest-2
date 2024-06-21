@@ -52,6 +52,8 @@ public class PlayerHarmer : MonoBehaviour
     {
         Meltometer melta = terry.GetComponent<Meltometer>();
         melta.ChangeMeter(staticHarmAmount);
+        PlayerThrowing pt = terry.GetComponent<PlayerThrowing>();
+        pt.totalThrows -= (int)staticHarmAmount;
 
     }
 
